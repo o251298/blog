@@ -1,9 +1,10 @@
 @extends('welcome')
 @section('content')
     <div class="container">
+        <a href="">{{$post->user->username}}</a>
         <div class="card mb-3">
             <a href="{{route('photo', $post->photo->id)}}">
-                <img src="{{$post->photo->url}}" class="card-img-top" alt="..." style="max-height: 500px">
+                <img src="{{asset('/storage/' . $post->photo->url)}}" class="card-img-top" alt="..." style="max-height: 500px">
             </a>
             <div class="card-body">
                 <h5 class="card-title">

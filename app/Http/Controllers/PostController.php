@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PostRequest;
+use App\Mail\ResetPassword;
 use App\Mark;
 use App\Photo;
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
@@ -18,7 +21,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::has('photo')->paginate(4); // выбор тех у которых есть фото
+        $posts = Post::has('photo')->paginate(10); // выбор тех у которых есть фото
         return view('post.index', [
             'posts' => $posts
         ]);
@@ -44,9 +47,8 @@ class PostController extends Controller
     {
         if ($path = $request->file('image')->store('images', 'public')){
             //$url_img = 'https://via.placeholder.com/640x480.png/00bb88?text=nostrum';
-            $user_id = 1;
             $post = Post::create([
-                'user_id' => $user_id,
+                'user_id' => Auth::user()->id,
                 'title' => $request->title,
                 'text' => $request->text,
             ]);

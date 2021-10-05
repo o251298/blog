@@ -2,8 +2,13 @@
 @section('content')
     <div class="container">
         @foreach($posts as $post)
-        <div class="card mb-3">
-                <img src="{{$post->photo->url}}" class="card-img-top" alt="..." style="max-height: 500px">
+        <div class="card mb-3" style="max-width: 800px; background: #242526; padding: 10px; border: 1px solid #3e4042;">
+            <div class="card" style="background: #242526">
+                <div class="card-body ">
+                    <a href="#" class="user">{{$post->user->username}}</a>
+                </div>
+            </div>
+                <img src="{{asset('/storage/' . $post->photo->url)}}" class="card-img-top" alt="..." style="max-height: 500px">
             <div class="card-body">
                 <h5 class="card-title">
                     <a href="{{route('view', $post->id)}}">

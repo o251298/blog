@@ -2,7 +2,7 @@
 @section('content')
     <div class="container">
         <div class="card mb-3">
-                <img src="{{$photo->url}}" class="card-img-top" alt="..." style="max-height: 500px">
+                <img src="{{asset('/storage/' . $photo->url)}}" class="card-img-top" alt="..." style="max-height: 500px">
             <div class="card-body">
                 <form action="{{route('mark')}}" method="post">
                     @csrf
